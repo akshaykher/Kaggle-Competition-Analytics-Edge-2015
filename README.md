@@ -2,4 +2,4 @@
 
 Please visit the following link for detailed description :-
 
-[Kaggle Competition Description] {https://www.kaggle.com/c/15-071x-the-analytics-edge-competition-spring-2015}
+[Kaggle Competition Description] (https://www.kaggle.com/c/15-071x-the-analytics-edge-competition-spring-2015)
