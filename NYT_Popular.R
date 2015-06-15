@@ -21,8 +21,6 @@ vector = which(NewsTrain[NewsTrain$NewsDesk=="",][,2] == "Business Day")
 NewsTrain[NewsTrain$NewsDesk=="",][,1][vector] = "Business"
 vector = which(NewsTrain[NewsTrain$NewsDesk=="",][,2] == "Crosswords/Games")
 NewsTrain[NewsTrain$NewsDesk=="",][,1][vector] = "Business"
-#vector = which(NewsTrain[NewsTrain$NewsDesk=="",][,2] == "Health")
-#NewsTrain[NewsTrain$NewsDesk=="",][,1][vector] = "Science"
 vector = which(NewsTrain[NewsTrain$NewsDesk=="",][,2] == "Opinion")
 NewsTrain[NewsTrain$NewsDesk=="",][,1][vector] = "OpEd"
 vector = which(NewsTrain[NewsTrain$NewsDesk=="",][,2] == "Travel")
@@ -41,7 +39,6 @@ for (i in seq_len(nrow(NewsTrain)))
   if(NewsTrain$NewsDesk[i]=="Sports")
   {
     NewsTrain$SectionName[i]="Sports"
-  }  
 }
 
 for (i in seq_len(nrow(NewsTrain)))
@@ -91,8 +88,6 @@ vector = which(NewsTest[NewsTest$NewsDesk=="",][,2] == "Business Day")
 NewsTest[NewsTest$NewsDesk=="",][,1][vector] = "Business"
 vector = which(NewsTest[NewsTest$NewsDesk=="",][,2] == "Crosswords/Games")
 NewsTest[NewsTest$NewsDesk=="",][,1][vector] = "Business"
-#vector = which(NewsTest[NewsTest$NewsDesk=="",][,2] == "Health")
-#NewsTest[NewsTest$NewsDesk=="",][,1][vector] = "Science"
 vector = which(NewsTest[NewsTest$NewsDesk=="",][,2] == "Arts")
 NewsTest[NewsTest$NewsDesk=="",][,1][vector] = "Culture"
 vector = which(NewsTest[NewsTest$NewsDesk=="",][,2] == "N.Y. / Region")
@@ -190,7 +185,6 @@ for(i in 1:1870)
 }
 
 #Creating a new Variable Q_Mark_Abstract which checks if a question mark is present or not in Abstract
-
 for(i in 1:6532)
 {
   if(grepl("?",NewsTrain$Abstract[i],fixed=TRUE))
@@ -274,7 +268,6 @@ test= Test
 Train$Popular=as.factor(Train$Popular)
 Train$Q_Mark_Headline=as.factor(Train$Q_Mark_Headline)
 Train$Q_Mark_Abstract=as.factor(Train$Q_Mark_Abstract)
-#Train$Brand=as.factor(Train$Brand)
 Train$NewsDesk=as.factor(Train$NewsDesk)
 Train$SectionName=as.factor(Train$SectionName)
 Train$SubsectionName=as.factor(Train$SubsectionName)
@@ -293,7 +286,7 @@ Test$NewsDesk <- factor(Test$NewsDesk, levels=levels(Train$NewsDesk))
 Test$SectionName <- factor(Test$SectionName, levels=levels(Train$SectionName))
 Test$SubsectionName <- factor(Test$SubsectionName, levels=levels(Train$SubsectionName))
 
-# train/test (with log(1+WordCount))    => Logistic Regression
+#train/test (with log(1+WordCount))    => Logistic Regression
 train$Popular=as.factor(train$Popular)
 train$Q_Mark_Headline=as.factor(train$Q_Mark_Headline)
 train$Q_Mark_Abstract=as.factor(train$Q_Mark_Abstract)
@@ -331,5 +324,4 @@ predictModel = (predictLog+predictRF*2)/3
 
 #Submitting on Kaggle
 KaggleSubmission = data.frame(UniqueID = NewsTest$UniqueID, Probability1 = predictModel)
-
 write.csv(KaggleSubmission, "KaggleSubmission.csv", row.names=FALSE)
