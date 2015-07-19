@@ -39,6 +39,7 @@ for (i in seq_len(nrow(NewsTrain)))
   if(NewsTrain$NewsDesk[i]=="Sports")
   {
     NewsTrain$SectionName[i]="Sports"
+  }
 }
 
 for (i in seq_len(nrow(NewsTrain)))
